@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<head>
+
+<title>
+    CARS above 80 lakhs
+</title>
+<link rel="stylesheet" href="stylestable.css">
+</head>
+
+
+<body>
+    <input type="button" value="PRESS TO VIEW MAKE, MODEL AND VARIANT OF CARS ABOVE 80L" onclick="generate_table()">
+    
+    <script type=>
+
+        function generate_table() {
+            
+            var body = document.getElementsByTagName("body")[0];
+          
+            var tbl = document.createElement("table");
+            var tblBody = document.createElement("tbody");
+           
+                fetch('http://localhost:3000/api/prices').then(res => res.json()).then(resp => {
+            
+           
+            
+                    for (i = 0; i < resp.length; i++) {
+                x = resp[i].Ex_Showroom_Price;
+                x = x.slice(4,)
+                let num = 0;
+                let count = 0;
+                for (j = 0; j < x.length; j++) {
+                    if (x[j] != ',') {
+                        num += Math.pow(10, (x.length - j + count - 1)) * (x[j] - '0');
+                    }
+                    else {
+                        count++;
+                    }
+                    //2,92,667   
+                }
+                let ans = num
+                for (k = 0; k < count; k++) {
+                    ans = ans / 10;
+                }
+                if (ans > 8000000) {
+                    console.log(resp[i].Model)
+                    console.log(resp[i].Ex_Showroom_Price)
+                    var row = document.createElement("tr");
+                   
+                    for(m=0; m<4; m++)
+
+                    {  
+                    
+                    var cell = document.createElement("td");
+                   if(m==0)
+                   {
+                    var cellText = document.createTextNode( resp[i].Make);
+                   }
+                   else if(m==1)
+                   {
+                    var cellText = document.createTextNode( resp[i].Model );
+                   }
+                   else if(m==2)
+                   {
+                    var cellText = document.createTextNode( resp[i].Variant);
+                   }
+                   else if(m==3)
+                   {
+                    var cellText = document.createTextNode( resp[i].Ex_Showroom_Price);
+                   }
+
+
+                   cell.appendChild(cellText);
+                    row.appendChild(cell);
+                }
+                    
+                    
+                    tblBody.appendChild(row);
+                    
+                }
+            
+            } });
+           
+                
+              
+                // put the <tbody> in the <table>
+                tbl.appendChild(tblBody);
+                // appends <table> into <body>
+                body.appendChild(tbl);
+                // sets the border attribute of tbl to 2;
+                tbl.setAttribute("border", "2");
+              } 
+       
+    </script>
+    
+
+    
+
+</body>

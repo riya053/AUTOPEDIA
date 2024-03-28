@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+
+<title>
+    Suspension
+</title>
+<link rel="stylesheet" href="stylestable.css">
+</head>
+<body>
+    <input type="button" value="PRESS TO VIEW THE SUSPENSION DETAILS" onclick="generate_table()">
+    <script type=>
+        function generate_table() {
+             var body = document.getElementsByTagName("body")[0];
+             var tbl = document.createElement("table");
+            var tblBody = document.createElement("tbody");
+           
+                fetch('http://localhost:3000/api/prices').then(res => res.json()).then(resp => {
+                   for (i = 0; i < resp.length; i++) {
+                 {
+                    console.log(resp[i].Model)
+                    console.log(resp[i].Ex_Showroom_Price)
+                    var row = document.createElement("tr");
+                    for(m=0; m<5; m++)
+
+                    {  
+                    
+                    var cell = document.createElement("td");
+                   if(m==0)
+                   {
+                    var cellText = document.createTextNode( resp[i].Make);
+                   }
+                   else if(m==1) 
+                   {
+                    var cellText = document.createTextNode( resp[i].Model );
+                   }
+                   else if(m==2)
+                   {
+                    var cellText = document.createTextNode( resp[i].Ex_Showroom_Price);
+                   }
+                   else if(m==3)
+                   {
+                    var cellText = document.createTextNode( resp[i].Front_Suspension ); 
+                   }
+                   else if(m==4)
+                   {
+                    var cellText = document.createTextNode( resp[i].Rear_Suspension ); 
+                   }
+
+
+                   cell.appendChild(cellText);
+                    row.appendChild(cell);
+                }
+                    
+                    
+                    tblBody.appendChild(row);
+                    
+                }
+            
+            } });
+                // put the <tbody> in the <table>
+                tbl.appendChild(tblBody);
+                // appends <table> into <body>
+                body.appendChild(tbl);
+                // sets the border attribute of tbl to 2;
+                tbl.setAttribute("border", "2");
+              } 
+       
+    </script>
+    
+
+    
+
+</body>

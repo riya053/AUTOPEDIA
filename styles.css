@@ -1,0 +1,44 @@
+body {
+    
+    background: url("wallpaper.jpeg") repeat fixed 100% 100%;
+    align-items: center;
+    margin-top: 15%;
+        
+      
+  }
+  .card
+  {
+      position : relative;
+      margin-left: 3cm;
+      margin-top :4cm;
+      padding: 1cm;
+  }
+  .heading4
+  {
+
+      color:antiquewhite;
+  }
+  .heading6
+  {
+      color:aqua;
+  }
+  .text-light bg-dark
+  {
+      position: fixed;
+      top:0%;
+      width: 100%;
+  }
+.text{
+color: azure;
+text-decoration: solid;
+text-shadow: 0in;
+}
+.top
+{
+    background-color: rgb(2, 14, 14);
+    position: fixed;
+    color: white;
+    z-index: 6;
+    display: block;
+    margin-bottom: 20px;
+}

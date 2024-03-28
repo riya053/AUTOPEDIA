@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<head>
+
+<title>
+    LATEST CARS
+</title>
+
+</head>
+
+<link rel="stylesheet" href="stylestable.css">
+<body>
+    <input type="button" value="PRESS TO VIEW FEATURES OF ALL THE LATEST MODELS AVAILABLE" onclick="generate_table()">
+    
+    <script type=>
+
+        function generate_table() {
+            
+            var body = document.getElementsByTagName("body")[0];
+          
+            var tbl = document.createElement("table");
+            var tblBody = document.createElement("tbody");
+           
+                fetch('http://localhost:3000/api/prices').then(res => res.json()).then(resp => {
+                           for(i=0; i< resp.length; i++) {
+                    
+                {
+                    console.log(resp[i].Model)
+                    console.log(resp[i].Ex_Showroom_Price)
+                    var row = document.createElement("tr");
+                   
+                    for(m=0; m<14; m++)
+
+                {  
+                    var cell = document.createElement("td");
+                   
+                    if(m==0)
+                   {
+                    var cellText = document.createTextNode( resp[i].Model);
+                   }
+                   else if(m==1)
+                   {
+                    var cellText = document.createTextNode( resp[i].Make );
+                   }
+                   else if(m==2)
+                   {
+                       var cellText = document.createTextNode( resp[i].Variant);
+                   }
+                   else if(m==3)
+                   {
+                       var cellText = document.createTextNode( resp[i].Ex_Showroom_Price);
+                   }
+                   else if(m==4)
+                   {
+                    var cellText = document.createTextNode( resp[i].Fuel_Type);
+                   }
+                   else if(m==5)
+                   {
+                    var cellText = document.createTextNode( resp[i].City_Mileage); 
+                   }
+                   else if(m==6)
+                   {
+                    var cellText = document.createTextNode( resp[i].Kerb_Weight); 
+                   }
+                   else if(m==7)
+                   {
+                    var cellText = document.createTextNode( resp[i].Ground_Clearence); 
+                   }
+                   else if(m==8)
+                   {
+                    var cellText = document.createTextNode( resp[i].Odometer); 
+                   }
+                   else if(m==9)
+                   {
+                    var cellText = document.createTextNode( resp[i].Speedometer); 
+                   }
+                   else if(m==10)
+                   {
+                    var cellText = document.createTextNode( resp[i].Seating_Capacity); 
+                   }
+                   else if(m==11)
+                   {
+                    var cellText = document.createTextNode( resp[i].Seat_Material); 
+                   }
+                   else if(m==12)
+                   {
+                    var cellText = document.createTextNode( resp[i].Handbrake); 
+                   }
+                   else if(m==12)
+                   {
+                    var cellText = document.createTextNode( resp[i].Variant); 
+                   }
+                   else if(m==13)
+                   {
+                    var cellText = document.createTextNode( resp[i].Extended_Warranty); 
+                   }
+
+
+                   cell.appendChild(cellText);
+                    row.appendChild(cell);
+                }
+                    
+                    
+                    tblBody.appendChild(row);
+                    
+                }
+            
+            } });
+           
+                
+              
+                // put the <tbody> in the <table>
+                tbl.appendChild(tblBody);
+                // appends <table> into <body>
+                body.appendChild(tbl);
+                // sets the border attribute of tbl to 2;
+                tbl.setAttribute("border", "2");
+              } 
+       
+    </script>
+    
+
+    
+
+</body>
